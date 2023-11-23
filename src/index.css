@@ -147,6 +147,14 @@ button {
   gap: 1.5em;
 }
 
+.loading-img-container {
+  width:250px;
+}
+
+.loading-img {
+  width: 100%;
+}
+
 @media screen and (min-width: 400px)  {
   body {
     width: 400px;
