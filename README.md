@@ -1,8 +1,43 @@
-# React + Vite
+# PollyGlot!
+An AI-powered poly-translator. The app is built with React and powered with OpenAI API.  
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+![Enter text to translate and select language](screenshots/first-page.png "Enter text to translate and select language")
 
-Currently, two official plugins are available:
+![Wait for the translation](screenshots/second-page.png "Wait for the translation")
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+![Translated](screenshots/third-page.png "Translated")
+
+## In This Document:
+1. [Live Application URL](#live-application-url)
+2. [How to Use the Application](#how-to-use-the-application)
+3. [Technologies Used](#technologies-used)
+4. [Future Features](#future-features)
+5. [Challenges and Learning Points](#challenges-and-learning-points)
+
+## Live Application URL
+https://pollyglot-shant.netlify.app/
+
+## How to Use the Application
+1. User enters text to translate.
+2. User selects the language to translate to.
+3. User clicks translate.
+4. Translation should be displayed shortly.
+5. User can start over.
+
+## Technologies Used
+1. HTML, CSS, and React.
+2. [OpenAI API](https://platform.openai.com/).
+3. Vite for building and packaging.
+
+## Future Features:
+1. Turn the app into a chat app.
+2. Add the ability to correct text.
+3. Add AI-generated images.
+
+## Challenges and Learning Points:
+1. Vite requires environment variables to be prefixed with `VITE_` and imported using `import.meta.env.VITE_API KEY`.
+2. Use React's `useRef` to focus on an element.
+
+<hr>
+
+[Up](README.md)
