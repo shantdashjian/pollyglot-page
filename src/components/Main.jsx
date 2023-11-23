@@ -1,20 +1,27 @@
 
 import OpenAI from 'openai'
+import { useEffect, useRef, useState } from 'react'
 
 import frenchFlagUrl from '../assets/fr-flag.png'
 import spanishFlagUrl from '../assets/sp-flag.png'
 import japaneseFlagUrl from '../assets/jpn-flag.png'
 import loadingUrl from '../assets/loading.gif'
 
-import { useState } from 'react'
-
 export default function Main() {
-
   const [showLanguages, setShowLanguages] = useState(true)
   const [translating, setTranslating] = useState(false)
   const [textToTranslate, setTextToTranslate] = useState('')
-  const [translation, setTranslation] = useState('')
   const [language, setLanguage] = useState('french')
+  const [translation, setTranslation] = useState('')
+  const inputRef = useRef(null)
+
+  useEffect(() => {
+    inputRef.current.focus()
+  }, [])
+
+  function handleCheckLanguage(e) {
+    setTextToTranslate(e.target.value)
+  }
 
   async function handleTranslate() {
     setShowLanguages(false)
@@ -35,10 +42,17 @@ export default function Main() {
     })
     const result = await openai.chat.completions.create({
       model: 'gpt-3.5-turbo',
-      messages: messages
+      messages: messages,
+      temperature: 1.1
     })
     setTranslating(false)
     setTranslation(result.choices[0].message.content)
+  }
+
+  function handleStartOver() {
+    setShowLanguages(true)
+    setTextToTranslate('')
+    inputRef.current.focus()
   }
 
   return (
@@ -46,36 +60,36 @@ export default function Main() {
       <div className="main-content-container">
         <div className='translate-container'>
           <span className="content-label">Text to translate 👇</span>
-          <textarea id="text-to-translate" className="content-text" rows="2" value={textToTranslate} onChange={(e) => setTextToTranslate(e.target.value)}></textarea>
+          <textarea id="text-to-translate" className="content-text" rows="2" value={textToTranslate} onChange={handleCheckLanguage} ref={inputRef}></textarea>
         </div>
-        { showLanguages && <div className='languages-container'>
+        {showLanguages && <div className='languages-container'>
           <span className="content-label">Select language 👇</span>
           <div className='languages'>
             <div className='language-container'>
-              <input type="radio" id="french" name="language" value="french" checked={language === 'french'} onChange={(e) => setLanguage(e.target.value)}/>
+              <input type="radio" id="french" name="language" value="french" checked={language === 'french'} onChange={handleCheckLanguage} />
               <label className="content-text" htmlFor="french">French<img className="flag" src={frenchFlagUrl}></img></label>
             </div>
             <div className='language-container'>
-              <input type="radio" id="spanish" name="language" value="spanish" checked={language === 'spanish'} onChange={(e) => setLanguage(e.target.value)}/>
+              <input type="radio" id="spanish" name="language" value="spanish" checked={language === 'spanish'} onChange={handleCheckLanguage} />
               <label className="content-text" htmlFor="spanish">Spanish<img className="flag" src={spanishFlagUrl}></img></label>
             </div>
             <div className='language-container'>
-              <input type="radio" id="japanese" name="language" value="japanese" checked={language === 'japanese'} onChange={(e) => setLanguage(e.target.value)}/>
+              <input type="radio" id="japanese" name="language" value="japanese" checked={language === 'japanese'} onChange={(e) => setLanguage(e.target.value)} />
               <label className="content-text" htmlFor="japanese">Japanese<img className="flag" src={japaneseFlagUrl}></img></label>
             </div>
           </div>
           <button onClick={handleTranslate}>Translate</button>
-        </div> }
-        {translating && 
+        </div>}
+        {translating &&
           <div className='loading-img-container'>
-            <img className='loading-img' src={loadingUrl}/>
+            <img className='loading-img' src={loadingUrl} />
           </div>
-          }
+        }
         {!showLanguages && !translating && <div className='result-container'>
           <span className="content-label">Your translation 👇</span>
           <textarea id="translation" className="content-text" rows="2" readOnly value={translation}></textarea>
-          <button onClick={() => {setShowLanguages(true); setTextToTranslate('');}}>Start Over</button>
-        </div> }
+          <button onClick={handleStartOver}>Start Over</button>
+        </div>}
       </div>
     </div >
   )
