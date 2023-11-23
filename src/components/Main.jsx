@@ -2,16 +2,16 @@
 import OpenAI from 'openai'
 import { useEffect, useRef, useState } from 'react'
 
-import frenchFlagUrl from '../assets/fr-flag.png'
-import spanishFlagUrl from '../assets/sp-flag.png'
+import germanFlagUrl from '../assets/de-flag.png'
 import japaneseFlagUrl from '../assets/jpn-flag.png'
+import frenchFlagUrl from '../assets/fr-flag.png'
 import loadingUrl from '../assets/loading.gif'
 
 export default function Main() {
   const [showLanguages, setShowLanguages] = useState(true)
   const [translating, setTranslating] = useState(false)
   const [textToTranslate, setTextToTranslate] = useState('')
-  const [language, setLanguage] = useState('french')
+  const [language, setLanguage] = useState('german')
   const [translation, setTranslation] = useState('')
   const inputRef = useRef(null)
 
@@ -66,16 +66,16 @@ export default function Main() {
           <span className="content-label">Select language 👇</span>
           <div className='languages'>
             <div className='language-container'>
-              <input type="radio" id="french" name="language" value="french" checked={language === 'french'} onChange={handleCheckLanguage} />
-              <label className="content-text" htmlFor="french">French<img className="flag" src={frenchFlagUrl}></img></label>
-            </div>
-            <div className='language-container'>
-              <input type="radio" id="spanish" name="language" value="spanish" checked={language === 'spanish'} onChange={handleCheckLanguage} />
-              <label className="content-text" htmlFor="spanish">Spanish<img className="flag" src={spanishFlagUrl}></img></label>
+              <input type="radio" id="german" name="language" value="german" checked={language === 'german'} onChange={handleCheckLanguage} />
+              <label className="content-text" htmlFor="spanish">German<img className="flag" src={germanFlagUrl}></img></label>
             </div>
             <div className='language-container'>
               <input type="radio" id="japanese" name="language" value="japanese" checked={language === 'japanese'} onChange={(e) => setLanguage(e.target.value)} />
               <label className="content-text" htmlFor="japanese">Japanese<img className="flag" src={japaneseFlagUrl}></img></label>
+            </div>
+            <div className='language-container'>
+              <input type="radio" id="french" name="language" value="french" checked={language === 'french'} onChange={handleCheckLanguage} />
+              <label className="content-text" htmlFor="french">French<img className="flag" src={frenchFlagUrl}></img></label>
             </div>
           </div>
           <button onClick={handleTranslate}>Translate</button>
