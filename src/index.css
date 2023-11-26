@@ -155,7 +155,6 @@ button {
 
 @media screen and (min-width: 400px)  {
   body {
-    width: 400px;
     display: block;
     margin: 0 auto;
   }
