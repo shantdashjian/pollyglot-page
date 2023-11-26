@@ -8,7 +8,6 @@ body {
 }
 
 .header-container {
-  height: 25vh;
   background-image: url("./assets/worldmap.png");
   background-position: center;
   display: flex;
@@ -16,6 +15,7 @@ body {
   justify-content: center;
   align-items: center;
   gap: 1em;
+  padding: 1.5em;
 }
 
 .parrot-img {
@@ -46,20 +46,18 @@ body {
 
 .main-container {
   padding: 2em 1em;
-  height: 75vh;
   display: flex;
   flex-direction: column;
 }
 
 .main-content-container {
-  border: 4px solid #252F42;
   border-radius: 0.9em;
-  height: 100%;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
   padding: 1.5em;
+  gap: 1.5em;
 }
 
 .content-label {
@@ -69,7 +67,7 @@ body {
   font-size: 20px;
   font-style: normal;
   font-weight: 700;
-  line-height: 150%;
+  line-height: 1.5;
 }
 
 textarea {
@@ -160,6 +158,5 @@ button {
     width: 400px;
     display: block;
     margin: 0 auto;
-    border: 1px solid black;
   }
 }
