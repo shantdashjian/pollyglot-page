@@ -7,6 +7,12 @@ body {
   font-family: 'Poppins', sans-serif;
 }
 
+.container {
+  border: 5px solid #192E58;
+  height: 100vh;
+  overflow: auto;
+}
+
 .header-container {
   background-image: url("./assets/worldmap.png");
   background-position: center;
@@ -146,7 +152,7 @@ button {
 }
 
 .loading-img-container {
-  width:250px;
+  width: 200px;
 }
 
 .loading-img {
@@ -158,5 +164,5 @@ button {
     width: 480px;
     display: block;
     margin: 0 auto;
-  }
+  }  
 }
