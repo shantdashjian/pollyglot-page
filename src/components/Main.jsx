@@ -19,8 +19,12 @@ export default function Main() {
     inputRef.current.focus()
   }, [])
 
-  function handleCheckLanguage(e) {
+  function handleInput(e) {
     setTextToTranslate(e.target.value)
+  }
+
+  function handleCheckLanguage(e) {
+    setLanguage(e.target.value)
   }
 
   async function handleTranslate() {
@@ -60,7 +64,7 @@ export default function Main() {
       <div className="main-content-container">
         <div className='translate-container'>
           <span className="content-label">Text to translate 👇</span>
-          <textarea id="text-to-translate" className="content-text" rows="2" value={textToTranslate} onChange={handleCheckLanguage} ref={inputRef}></textarea>
+          <textarea id="text-to-translate" className="content-text" rows="2" value={textToTranslate} onChange={handleInput} ref={inputRef}></textarea>
         </div>
         {showLanguages && <div className='languages-container'>
           <span className="content-label">Select language 👇</span>
