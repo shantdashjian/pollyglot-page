@@ -1,5 +1,3 @@
-
-import OpenAI from 'openai'
 import { useEffect, useRef, useState } from 'react'
 
 import germanFlagUrl from '../assets/de-flag.png'
@@ -14,6 +12,8 @@ export default function Main() {
   const [language, setLanguage] = useState('german')
   const [translation, setTranslation] = useState('')
   const inputRef = useRef(null)
+
+  const workerUrl = "https://pollyglot-worker.shant.workers.dev/"
 
   useEffect(() => {
     inputRef.current.focus()
@@ -40,17 +40,22 @@ export default function Main() {
         content: textToTranslate
       }
     ]
-    const openai = new OpenAI({
-      apiKey: import.meta.env.VITE_OPENAI_API_KEY,
-      dangerouslyAllowBrowser: true
-    })
-    const result = await openai.chat.completions.create({
-      model: 'gpt-3.5-turbo',
-      messages: messages,
-      temperature: 1.1
-    })
+    
+    const options = {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(messages),
+    }
+
+    const response = await fetch(workerUrl, options);
+    const result = await response.json();
+    if (!response.ok) {
+      throw new Error(result.error);
+    }
     setTranslating(false)
-    setTranslation(result.choices[0].message.content)
+    setTranslation(result)
   }
 
   function handleStartOver() {
