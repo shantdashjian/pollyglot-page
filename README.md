@@ -15,7 +15,7 @@ An AI-powered poly-translator. The app is built with React and powered with Open
 5. [Challenges and Learning Points](#challenges-and-learning-points)
 
 ## Live Application URL
-https://pollyglot-shant.netlify.app/
+[https://pollyglot-shant.netlify.app/](https://pollyglot-app.pages.dev/)
 
 ## How to Use the Application
 1. User enters text to translate.
@@ -35,8 +35,7 @@ https://pollyglot-shant.netlify.app/
 3. Add AI-generated images.
 
 ## Challenges and Learning Points:
-1. Vite requires environment variables to be prefixed with `VITE_` and imported using `import.meta.env.VITE_API KEY`.
-2. Use React's `useRef` to focus on an element.
+1. Use React's `useRef` to focus on an element.
 
 <hr>
 
